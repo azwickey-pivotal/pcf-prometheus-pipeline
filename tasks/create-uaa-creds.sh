@@ -32,13 +32,13 @@ uaac client add ${prometheus_cf_client} \
 
 echo "Getting BOSH director IP..."
 director_id=$($CURL --path=/api/v0/deployed/products | jq -r ".[].guid" | grep p-bosh)
-director_ip=$($CURL --path=/api/v0/deployed/products/$director_id/static_ips | jq -r .[0].ips[0])
+#director_ip=$($CURL --path=/api/v0/deployed/products/$director_id/static_ips | jq -r .[0].ips[0])
 
 echo "Getting BOSH UAA creds..."
 uaa_login_password=$($CURL --path=/api/v0/deployed/products/$director_id/credentials/.director.uaa_login_client_credentials | jq -r .credential.value.password)
 uaa_admin_password=$($CURL --path=/api/v0/deployed/director/credentials/uaa_admin_user_credentials | jq -r .credential.value.password)
 
-echo "Logging into BOSH UAA..."
+echo "Logging into BOSH UAA... $director_ip"
 uaac target https://$director_ip:8443 --skip-ssl-validation
 uaac token owner get login -s $uaa_login_password<<EOF
 admin

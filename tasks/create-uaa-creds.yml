@@ -21,6 +21,7 @@ params:
   prometheus_cf_client:
   prometheus_cf_secret:
   opsman_url:
+  director_ip:
 
 run:
   path: pcf-prometheus-git/tasks/create-uaa-creds.sh
