@@ -21,3 +21,6 @@ bosh -n upload release prometheus-release/prometheus-*.tgz
 
 echo "Uploading Routing Release..."
 bosh -n upload release https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release
+
+echo "Uploading Prometheus Customizations Release..."
+bosh -n upload release prometheus-custom-release/prometheus-custom-*.tgz
